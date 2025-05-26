@@ -113,8 +113,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <audio id="background-music" loop>
-    <source src="[ALAMAT_FILE_LOVE_WTE]" type="audio/mpeg">
+  <audio id="background-music" loop autoplay>
+    <source src="love-wte.mp3" type="audio/mpeg">
     Browser kamu tidak mendukung elemen audio.
   </audio>
 
@@ -134,10 +134,10 @@
     <div class="locket-container">
       <div class="chain"></div>
       <div class="locket-left">
-        <img id="photo1-preview" src="[ALAMAT_FILE_1]">
+        <img id="photo1-preview" src="1.png">
       </div>
       <div class="locket-right">
-        <img id="photo2-preview" src="[ALAMAT_FILE_2]">
+        <img id="photo2-preview" src="2.png">
       </div>
     </div>
     <div class="message-container">
@@ -181,6 +181,14 @@
       } else {
         document.getElementById('error-message').classList.remove('hidden');
       }
+    });
+
+    // Autoplay audio on page load
+    window.addEventListener('load', () => {
+      const audio = document.getElementById('background-music');
+      audio.play().catch(() => {
+        document.addEventListener('click', () => audio.play(), { once: true });
+      });
     });
   </script>
 </body>
